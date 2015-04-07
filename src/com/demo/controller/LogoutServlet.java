@@ -15,10 +15,10 @@ public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         if (session == null) {
-            response.sendRedirect("/login");
+            response.sendRedirect("/");
         } else {
-            session.removeAttribute("LoggedIn");
-            response.sendRedirect("/login");
+            session.invalidate();
+            response.sendRedirect("/");
         }
     }
 }

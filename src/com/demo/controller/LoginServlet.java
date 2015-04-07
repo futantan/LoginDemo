@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
         User userInDB = userDao.getUserByName(inputUserName);
 
         if (userInDB != null && userInDB.getPassword().equals(inputPassword)) {
-            request.getSession().setAttribute("userName", inputUserName);
+            request.getSession().setAttribute("userType", "normal");
             response.sendRedirect("/content");
         }
 

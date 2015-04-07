@@ -22,6 +22,7 @@ public class ContentServlet extends HttpServlet {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
             out.write("you can see this because you have logged in!");
+            out.write("<a href=\"logout\">退出登录</a>");
         }
     }
 }

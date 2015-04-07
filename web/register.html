@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        function registerFromSubmit() {
+            document.getElementById("password").value = hex_md5(document.getElementById("password").value);
+            document.registerForm.submit()
+        }
+    </script>
+</head>
+<body>
+<form name="registerForm" action="/register" method="post">
+    <p>用户名:<input id="userName" type="text" name="userName"/></p>
+
+    <p>密码: <input id="password" type="text" name="password"/></p>
+
+    <p>邮箱: <input id="email" type="text" name="email"/></p>
+    <input type="submit" value="注册" onclick="registerFromSubmit()"/>
+</form>
+</body>
+</html>

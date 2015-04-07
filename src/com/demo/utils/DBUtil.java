@@ -51,23 +51,4 @@ public class DBUtil {
         }
     }
 
-    public static void main(String[] args) {
-        Connection connection = DBUtil.getDatabaseConnection();
-        String sql = "select id, name, email from CustomerTb1";
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet set = statement.executeQuery(sql);
-            while (set.next()) {
-                int id = set.getInt(1);
-                String name = set.getString(2);
-                String email = set.getString(3);
-                System.out.println(id +"," + name + "," + email);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        DBUtil.closeDatabaseConection(connection);
-    }
-
-
 }

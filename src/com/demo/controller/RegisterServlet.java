@@ -24,7 +24,13 @@ public class RegisterServlet extends HttpServlet {
 
         //todo check valid
         UserDao userDao = new UserDaoImpl();
-        System.out.println(userDao.addUser(new User(inputUserName, inputPassword, inputEmail,new Date())));
+        boolean isRegisterSucceed = userDao.addUser(new User(inputUserName, inputPassword, inputEmail,new Date()));
+        if (isRegisterSucceed) {
+            request.getSession().setAttribute("userType", "normal");
+            response.sendRedirect("/content");
+        }else{
+            out.write("用户已存在");
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

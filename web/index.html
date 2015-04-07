@@ -9,14 +9,20 @@
             document.getElementById("password").value = hex_md5(document.getElementById("password").value);
             document.form1.submit()
         }
+        function register() {
+            window.open("register.jsp")
+        }
     </script>
 </head>
 <body>
 <form name="form1" action="/login" method="post">
-    <p>用户名:<input id="username" type="text" name="userName"/></p>
+    <p>用户名:<input id="userName" type="text" name="userName"/></p>
+
     <p>密码: <input id="password" type="text" name="password"/></p>
     <input type="submit" value="登录" onclick="submitForm()"/>
 </form>
+
+<button type="button" onclick="register()">注册</button>
 
 </body>
 </html>

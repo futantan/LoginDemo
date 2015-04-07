@@ -1,5 +1,9 @@
 package com.demo.controller;
 
+import com.demo.dao.UserDao;
+import com.demo.dao.impl.UserDaoImpl;
+import com.demo.domain.User;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +21,9 @@ public class RegisterServlet extends HttpServlet {
         String inputPassword = request.getParameter("password");
         String inputEmail = request.getParameter("email");
 
-
+        //todo check valid
+        UserDao userDao = new UserDaoImpl();
+        System.out.println(userDao.addUser(new User(inputUserName, inputPassword, inputEmail)));
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

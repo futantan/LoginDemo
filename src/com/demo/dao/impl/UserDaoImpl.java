@@ -71,9 +71,9 @@ public class UserDaoImpl implements UserDao {
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet.next()) {
                 User user = new User();
-                user.setUserName(resultSet.getString(2));
-                user.setPassword(resultSet.getString(3));
-                user.setEmail(resultSet.getString(4));
+                user.setUserName(resultSet.getString(1));
+                user.setPassword(resultSet.getString(2));
+                user.setEmail(resultSet.getString(3));
                 return user;
             }
         } catch (SQLException e) {
@@ -95,9 +95,9 @@ public class UserDaoImpl implements UserDao {
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 User user = new User();
-                user.setUserName(resultSet.getString(2));
-                user.setPassword(resultSet.getString(3));
-                user.setEmail(resultSet.getString(4));
+                user.setUserName(resultSet.getString(1));
+                user.setPassword(resultSet.getString(2));
+                user.setEmail(resultSet.getString(3));
                 users.add(user);
             }
             return users;

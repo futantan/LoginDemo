@@ -27,11 +27,19 @@
         <servlet-name>Content</servlet-name>
         <servlet-class>com.demo.controller.ContentServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>Content</servlet-name>
         <url-pattern>/content</url-pattern>
     </servlet-mapping>
 
+
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>com.demo.controller.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
 
 </web-app>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 
 public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,7 +24,7 @@ public class RegisterServlet extends HttpServlet {
 
         //todo check valid
         UserDao userDao = new UserDaoImpl();
-        System.out.println(userDao.addUser(new User(inputUserName, inputPassword, inputEmail)));
+        System.out.println(userDao.addUser(new User(inputUserName, inputPassword, inputEmail,new Date())));
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

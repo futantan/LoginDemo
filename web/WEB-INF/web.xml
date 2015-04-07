@@ -5,7 +5,7 @@
          version="3.1">
     <servlet>
         <servlet-name>Login</servlet-name>
-        <servlet-class>com.demo.controller.LoginServlet</servlet-class>
+        <servlet-class>com.demo.controller.UserLoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -76,5 +76,14 @@
     <servlet-mapping>
         <servlet-name>Edit</servlet-name>
         <url-pattern>/edit</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AdminLoginServlet</servlet-name>
+        <servlet-class>com.demo.controller.AdminLoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminLoginServlet</servlet-name>
+        <url-pattern>/adminLogin</url-pattern>
     </servlet-mapping>
 </web-app>

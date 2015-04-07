@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="md5.js"></script>
+    <script language="javascript">
+        function submitForm() {
+            document.getElementById("password").value = hex_md5(document.getElementById("password").value);
+            document.adminForm.submit()
+        }
+    </script>
+</head>
+<body>
+<form name="adminForm" action="/adminLogin" method="post">
+    <p>管理员用户名:<input id="userName" type="text" name="userName"/></p>
+
+    <p>管理员密码: <input id="password" type="password" name="password"/></p>
+    <input type="submit" value="登录" onclick="submitForm()"/>
+</form>
+</body>
+</html>

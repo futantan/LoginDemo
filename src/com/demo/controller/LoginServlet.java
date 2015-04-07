@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 
     public static void main(String[] args) {
         UserDao userDao = new UserDaoImpl();
-        userDao.addUser(new User("test", CipherUtil.generatePassword("123").toUpperCase(), "aaa@bbb.com"));
+        userDao.addUser(new User("test", CipherUtil.generatePassword("123").toUpperCase(), "aaa@bbb.com",new Date()));
         System.out.println(userDao.getUserByName("test1"));
     }
 }

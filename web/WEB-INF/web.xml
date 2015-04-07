@@ -51,4 +51,22 @@
         <url-pattern>/manage</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>TestRegServlet</servlet-name>
+        <servlet-class>com.demo.controller.TestRegServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TestRegServlet</servlet-name>
+        <url-pattern>/RegisterServlet.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MailBackServlet</servlet-name>
+        <servlet-class>com.demo.controller.MailBackServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MailBackServlet</servlet-name>
+        <url-pattern>/MailBackServlet.do</url-pattern>
+    </servlet-mapping>
+
 </web-app>

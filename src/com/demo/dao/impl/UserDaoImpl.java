@@ -5,36 +5,15 @@ import com.demo.domain.User;
 import com.demo.utils.DBUtil;
 
 import java.sql.*;
-import java.util.ArrayList;
+import java.util.*;
+import java.util.Date;
 
 public class UserDaoImpl implements UserDao {
 
     @Override
-    public void createUserTable() {
-        Connection connection = DBUtil.getDatabaseConnection();
-        Statement statement = null;
-        try {
-            statement = connection.createStatement();
-            statement.execute("CREATE TABLE IF NOT EXISTS user (id INT PRIMARY KEY UNIQUE AUTO_INCREMENT,user_name VARCHAR(55), password VARCHAR(55), email VARCHAR(55), UNIQUE (user_name))");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            DBUtil.closeDatabaseConection(connection);
-        }
-
-    }
-
-    @Override
     public boolean addUser(User user) {
         Connection connection = DBUtil.getDatabaseConnection();
-        //todo check if exist
+
         String sql = "SELECT * FROM user WHERE user_name='" + user.getUserName() + "'";
         PreparedStatement preparedStatement;
         try {
@@ -47,12 +26,13 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
         }
 
-        sql = "INSERT INTO user(user_name,password,email)VALUES(?,?,?)";
+        sql = "INSERT INTO user(user_name,password,email,regist_time)VALUES(?,?,?,?)";
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, user.getUserName());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getEmail());
+            preparedStatement.setTimestamp(4, new Timestamp(user.getRegisterDate().getTime()));
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,7 +45,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getUserByName(String name) {
         Connection connection = DBUtil.getDatabaseConnection();
-        String sql = "SELECT user_name, password, email FROM user WHERE user_name='" + name + "'";
+        String sql = "SELECT user_name, password, email, isConfirmed FROM user WHERE user_name='" + name + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
@@ -74,6 +54,7 @@ public class UserDaoImpl implements UserDao {
                 user.setUserName(resultSet.getString(1));
                 user.setPassword(resultSet.getString(2));
                 user.setEmail(resultSet.getString(3));
+                user.setConfirmed(resultSet.getBoolean(4));
                 return user;
             }
         } catch (SQLException e) {
@@ -89,7 +70,7 @@ public class UserDaoImpl implements UserDao {
     public ArrayList<User> getAllUsers() {
         ArrayList<User> users = new ArrayList<User>();
         Connection connection = DBUtil.getDatabaseConnection();
-        String sql = "SELECT user_name, password, email FROM user";
+        String sql = "SELECT user_name, password, email,isConfirmed FROM user";
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
@@ -98,6 +79,7 @@ public class UserDaoImpl implements UserDao {
                 user.setUserName(resultSet.getString(1));
                 user.setPassword(resultSet.getString(2));
                 user.setEmail(resultSet.getString(3));
+                user.setConfirmed(resultSet.getBoolean(4));
                 users.add(user);
             }
             return users;
@@ -127,7 +109,10 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void updateUser(User user) {
         Connection connection = DBUtil.getDatabaseConnection();
-        String sql = "update user set password='" + user.getPassword() + "',email='" + user.getEmail() + "' where user_name='" + user.getUserName() + "'";
+        String sql = "update user set password='" + user.getPassword() +
+                "',email='" + user.getEmail() +
+                "',isConfirmed='" + user.isConfirmed() +
+                "' where user_name='" + user.getUserName() + "'";
         try {
             Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
@@ -142,9 +127,13 @@ public class UserDaoImpl implements UserDao {
 
     public static void main(String[] args) {
         UserDao userDao = new UserDaoImpl();
-        //userDao.createUserTable();
-        userDao.deleteUser("zhangsan");
-        userDao.deleteUser("z111hangsan");
-        System.out.println(userDao.getAllUsers());
+        ////userDao.createUserTable();
+        //userDao.deleteUser("zhangsan");
+        //userDao.deleteUser("z111hangsan");
+        //System.out.println(userDao.getAllUsers());
+        User a = new User("zhang", "123", "a@a.com", new Date());
+        System.out.println(userDao.getUserByName("zhang"));
+        User b = new User("li", "123", "B@B.com", new Date(), true);
+        userDao.addUser(b);
     }
 }

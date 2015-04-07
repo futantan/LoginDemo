@@ -6,8 +6,6 @@ import java.util.ArrayList;
 
 public interface UserDao {
 
-    void createUserTable();
-
     /**
      *
      * @param user user info
@@ -29,7 +27,7 @@ public interface UserDao {
     void deleteUser(String userName);
 
     /**
-     * update user's info except the name
+     * update user's info except the name and register time
      * @param user
      */
     void updateUser(User user);

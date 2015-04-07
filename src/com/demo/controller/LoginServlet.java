@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
 
     public static void main(String[] args) {
         UserDao userDao = new UserDaoImpl();
-        userDao.addUser(new User(0, "test", CipherUtil.generatePassword("123").toUpperCase(), "aaa@bbb.com"));
+        userDao.addUser(new User("test", CipherUtil.generatePassword("123").toUpperCase(), "aaa@bbb.com"));
         System.out.println(userDao.getUserByName("test1"));
     }
 }

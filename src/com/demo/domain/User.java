@@ -2,18 +2,9 @@ package com.demo.domain;
 
 public class User {
 
-    private int id;
     private String userName;
     private String password;
     private String email;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getUserName() {
         return userName;
@@ -43,8 +34,7 @@ public class User {
 
     }
 
-    public User(int id, String userName, String password, String email) {
-        this.id = id;
+    public User(String userName, String password, String email) {
         this.userName = userName;
         this.password = password;
         this.email = email;
@@ -53,8 +43,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", userName='" + userName + '\'' +
+                "userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 '}';

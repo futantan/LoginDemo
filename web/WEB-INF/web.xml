@@ -87,12 +87,4 @@
         <url-pattern>/adminLogin</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>ForTestServlet</servlet-name>
-        <servlet-class>com.demo.controller.ForTestServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ForTestServlet</servlet-name>
-        <url-pattern>/test</url-pattern>
-    </servlet-mapping>
 </web-app>

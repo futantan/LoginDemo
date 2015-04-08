@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class EditUserServlet extends HttpServlet {
@@ -15,19 +16,24 @@ public class EditUserServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //todo 权限
-        String inputUserName = request.getParameter("userName");
-        String inputAction = request.getParameter("action");
-        if (inputUserName != null && inputAction != null) {
-            if (inputAction.equals("edit")) {
-
-            }
-            if (inputAction.equals("delete")) {
-                UserDao userDao = new UserDaoImpl();
-                userDao.deleteUser(inputUserName);
-            }
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("userType").equals("normal")) {
+            response.sendRedirect("/adminLogin.html");
         } else {
-            //todo 网页出错处理
+            String inputUserName = request.getParameter("userName");
+            String inputAction = request.getParameter("action");
+            if (inputUserName != null && inputAction != null) {
+                if (inputAction.equals("edit")) {
+
+                }
+                if (inputAction.equals("delete")) {
+                    UserDao userDao = new UserDaoImpl();
+                    userDao.deleteUser(inputUserName);
+                    response.sendRedirect("/manage");
+                }
+            } else {
+                //todo 网页出错处理
+            }
         }
     }
 }

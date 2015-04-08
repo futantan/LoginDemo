@@ -24,8 +24,12 @@
         <td>修改</td>
         <td>删除</td>
     </tr>
-    <%--todo 权限--%>
     <%
+        String userType = (String) session.getAttribute("userType");
+        if (userType == null || !userType.equals("admin")) {
+            response.sendRedirect("/adminLogin.html");
+            return;
+        }
         ArrayList<User> users = (ArrayList<User>) request.getAttribute("users");
         for (User user : users) {
             String editURL = "edit?userName=" + user.getUserName() + "&action=edit";

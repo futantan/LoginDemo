@@ -24,11 +24,10 @@ public class AdminLoginServlet extends HttpServlet {
         Admin adminInDB = adminDao.getAdminByName(inputUserName);
 
         if (adminInDB != null && adminInDB.getPassword().equals(inputPassword)) {
-            out.write("用户名密码right");
-
+            request.getSession().setAttribute("userType", "admin");
+            response.sendRedirect("/manage");
         } else {
             out.write("用户名密码不对");
-
         }
 
     }

@@ -53,7 +53,7 @@
 
     <servlet>
         <servlet-name>TestRegServlet</servlet-name>
-        <servlet-class>com.demo.controller.TestRegServlet</servlet-class>
+        <servlet-class>com.demo.controller.MailServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>TestRegServlet</servlet-name>
@@ -66,7 +66,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>MailBackServlet</servlet-name>
-        <url-pattern>/MailBackServlet.do</url-pattern>
+        <url-pattern>/EmailRegister/MailBackServlet.do</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -85,6 +85,15 @@
     <servlet-mapping>
         <servlet-name>AdminLoginServlet</servlet-name>
         <url-pattern>/adminLogin</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>mail</servlet-name>
+        <servlet-class>com.demo.controller.MailServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mail</servlet-name>
+        <url-pattern>/mail</url-pattern>
     </servlet-mapping>
 
 </web-app>

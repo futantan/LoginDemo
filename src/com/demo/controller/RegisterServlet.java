@@ -27,7 +27,7 @@ public class RegisterServlet extends HttpServlet {
         boolean isRegisterSucceed = userDao.addUser(new User(inputUserName, inputPassword, inputEmail,new Date()));
         if (isRegisterSucceed) {
             request.getSession().setAttribute("userType", "normal");
-            response.sendRedirect("/content");
+            response.sendRedirect("/content.jsp");
         }else{
             out.write("用户已存在");
         }

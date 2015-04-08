@@ -24,7 +24,7 @@ public class EditUserServlet extends HttpServlet {
             String inputAction = request.getParameter("action");
             if (inputUserName != null && inputAction != null) {
                 if (inputAction.equals("edit")) {
-
+                //todo 编辑用户
                 }
                 if (inputAction.equals("delete")) {
                     UserDao userDao = new UserDaoImpl();

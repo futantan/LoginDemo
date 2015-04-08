@@ -28,7 +28,9 @@ public class UserLoginServlet extends HttpServlet {
 
         if (userInDB != null && userInDB.getPassword().equals(inputPassword)) {
             request.getSession().setAttribute("userType", "normal");
-            response.sendRedirect("/content");
+            request.getSession().setAttribute("user", userInDB);
+            System.out.println("~~~~~~~~~~~~~~~");
+            response.sendRedirect("/content.jsp");
         }
 
         out.write("用户名密码不对");

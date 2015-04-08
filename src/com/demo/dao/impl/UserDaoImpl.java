@@ -111,8 +111,8 @@ public class UserDaoImpl implements UserDao {
         Connection connection = DBUtil.getDatabaseConnection();
         String sql = "update user set password='" + user.getPassword() +
                 "',email='" + user.getEmail() +
-                "',isConfirmed='" + user.isConfirmed() +
-                "' where user_name='" + user.getUserName() + "'";
+                "',isConfirmed=" + user.isConfirmed() +
+                " where user_name='" + user.getUserName() + "'";
         try {
             Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
